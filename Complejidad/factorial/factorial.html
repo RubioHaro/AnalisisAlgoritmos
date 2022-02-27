@@ -1,0 +1,43 @@
+<script>
+
+    // the complexity is O(n)
+    function getFactorial(n) {
+        let factorial = 1
+        for (let index = n; index > 0; index--) {
+            factorial = factorial * index
+        }
+        return factorial
+    }
+
+    // the complexity also is O(n)
+    function getFactorialRec(n) {
+        // basecase
+        //number= 0
+        if (n == 0)
+            return 1
+        return n * getFactorialRec(n - 1)
+    }
+
+
+    function calculateTimes() {
+        //Iterative
+        console.time('iter') 
+        getFactorial()
+        console.timeEnd('iter')
+
+        //Recursive
+        console.time('rec')
+        getFactorialRec(5)   // <---- measured code goes between startTime and endTime
+        console.timeEnd('rec')
+    }
+
+    assert(getFactorial(5) == getFactorialRec(5));
+    calculateTimes()
+
+    function assert(condition, message) {
+    if (!condition) {
+        throw message || "Assertion failed";
+    }
+}
+
+</script>
